@@ -1,6 +1,15 @@
 package org.example;
 
+/**
+ *
+ * @author Ronnald
+ */
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Sistema {
@@ -8,16 +17,12 @@ public class Sistema {
     private List<Aluno> alunos;
     private List<Turma> turmas;
 
-    // Construtor
     public Sistema() {
         this.profs = new ArrayList<>();
         this.alunos = new ArrayList<>();
         this.turmas = new ArrayList<>();
     }
 
-    /***************************************************/
-
-    // Métodos para Professores
     public void novoProf(Professor p) {
         this.profs.add(p);
     }
@@ -41,10 +46,6 @@ public class Sistema {
             }
         }
     }
-
-    /***************************************************/
-
-    // Métodos para Alunos
 
     public void novoAluno(Aluno a) {
         this.alunos.add(a);
@@ -70,9 +71,6 @@ public class Sistema {
         }
     }
 
-    /***************************************************/
-
-    // Metodos para Turmas
     public void novaTurma(Turma t) {
         this.turmas.add(t);
     }
@@ -90,11 +88,31 @@ public class Sistema {
         if (this.turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada até o momento.");
         } else {
-            System.out.println("Médias das turmas:");
+            System.out.println("--- Médias das Turmas (ordenado por semestre) ---");
+
+            Collections.sort(this.turmas);
+
             for (Turma t : this.turmas) {
                 t.medias();
-                System.out.println(); // Linha em branco entre turmas
+                System.out.println();
             }
+        }
+    }
+
+    public void salvarDados() {
+        try (BufferedWriter buff = new BufferedWriter(new FileWriter("dados.txt"))) {
+            for (Professor p : this.profs) {
+                p.salvarArq(buff);
+            }
+            for (Aluno a : this.alunos) {
+                a.salvarArq(buff);
+            }
+            for (Turma t : this.turmas) {
+                t.salvarArq(buff);
+            }
+            buff.write("FIM\n");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar os dados: " + e.getMessage());
         }
     }
 }

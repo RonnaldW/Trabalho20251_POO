@@ -1,6 +1,10 @@
 package org.example;
 
-/**** @author Ronnald*/
+/**
+ *
+ * @author Ronnald
+ */
+
 public class AlunoProva {
     private Aluno aluno;
     private double[] notas;

@@ -1,5 +1,13 @@
 package org.example;
 
+/**
+ *
+ * @author Ronnald
+ */
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Professor extends Pessoa {
     private double salario;
 
@@ -19,5 +27,13 @@ public class Professor extends Pessoa {
     @Override
     public String toString() {
         return getNome() + " (Salário: R$" + String.format("%.2f", salario) + ")";
+    }
+
+
+    public void salvarArq(BufferedWriter b) throws IOException {
+        b.write("PROF\n");
+        b.write(this.nome + "\n");
+        b.write(this.cpf + "\n");
+        b.write(this.salario + "\n");
     }
 }

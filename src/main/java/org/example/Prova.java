@@ -1,6 +1,13 @@
 package org.example;
 
-/**** @author Ronnald*/
+/**
+ *
+ * @author Ronnald
+ */
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Prova extends Avaliacao {
     private int nQuestoes;
     private AlunoProva[] alunoProvas;
@@ -27,5 +34,22 @@ public class Prova extends Avaliacao {
             }
         }
         return -1;
+    }
+
+    @Override
+    public void salvarArq(BufferedWriter b) throws IOException {
+        b.write("PROV\n");
+        b.write(this.nome + "\n");
+        b.write(this.dtAplic.getDia() + "\n");
+        b.write(this.dtAplic.getMes() + "\n");
+        b.write(this.dtAplic.getAno() + "\n");
+        b.write(this.valor + "\n");
+        b.write(this.nQuestoes + "\n");
+
+        for (AlunoProva ap : this.alunoProvas) {
+            for (double notaQuestao : ap.getNotas()) {
+                b.write(notaQuestao + "\n");
+            }
+        }
     }
 }

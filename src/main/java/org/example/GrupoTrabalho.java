@@ -1,9 +1,9 @@
 package org.example;
 
 /**
- *
  * @author Ronnald
  */
+
 public class GrupoTrabalho {
     private Aluno[] alunos;
     private double nota;
@@ -13,9 +13,14 @@ public class GrupoTrabalho {
         this.nota = nota;
     }
 
+    public Aluno[] getAlunos() {
+        return alunos;
+    }
+
     public boolean alunoNoGrupo(String cpf) {
         for (Aluno aluno : alunos) {
-            if (aluno.getCpf().equals(cpf)) {
+            // Verifica se o aluno não é nulo antes de chamar o método
+            if (aluno != null && aluno.getCpf().equals(cpf)) {
                 return true;
             }
         }
@@ -30,10 +35,14 @@ public class GrupoTrabalho {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("GrupoTrabalho [nota=").append(nota).append(", Alunos=");
-        for (int i = 0; i < alunos.length; i++) {
-            sb.append(alunos[i].getNome());
-            if (i < alunos.length - 1) {
-                sb.append(", ");
+        if (alunos != null) {
+            for (int i = 0; i < alunos.length; i++) {
+                if (alunos[i] != null) {
+                    sb.append(alunos[i].getNome());
+                    if (i < alunos.length - 1) {
+                        sb.append(", ");
+                    }
+                }
             }
         }
         sb.append("]");

@@ -1,6 +1,13 @@
 package org.example;
 
-/**** @author Ronnald*/
+/**
+ *
+ * @author Ronnald
+ */
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class Aluno extends Pessoa {
     private String mat;
 
@@ -20,5 +27,13 @@ public class Aluno extends Pessoa {
     @Override
     public String toString() {
         return getNome() + " (Matrícula: " + this.mat + ")";
+    }
+
+
+    public void salvarArq(BufferedWriter b) throws IOException {
+        b.write("ALU\n");
+        b.write(this.nome + "\n");
+        b.write(this.cpf + "\n");
+        b.write(this.mat + "\n");
     }
 }

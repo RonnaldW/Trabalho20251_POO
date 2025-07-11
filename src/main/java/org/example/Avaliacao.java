@@ -4,6 +4,10 @@ package org.example;
  *
  * @author Ronnald
  */
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public abstract class Avaliacao {
     protected String nome;
     protected Data dtAplic;
@@ -28,4 +32,6 @@ public abstract class Avaliacao {
     }
 
     public abstract double nota(String cpf);
+
+    public abstract void salvarArq(BufferedWriter b) throws IOException;
 }

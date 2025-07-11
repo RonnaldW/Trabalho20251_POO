@@ -1,6 +1,12 @@
 package org.example;
 
-public class Pessoa {
+/**
+ *
+ * @author Ronnald
+ */
+
+
+public abstract class Pessoa {
     protected String nome;
     protected String cpf;
 
@@ -21,5 +27,4 @@ public class Pessoa {
     public String getCpf() {
         return cpf;
     }
-
 }

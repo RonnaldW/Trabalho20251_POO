@@ -4,6 +4,7 @@ package org.example;
  *
  * @author Ronnald
  */
+
 public class Data {
     private int dia;
     private int mes;
